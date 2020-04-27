@@ -28,12 +28,16 @@ These data came from this:
 
 
 ## Conclusion
-The Multinomial Bayes model scored between 93-97% on accuracy, so we were able to achieve our modeling goal from a statistical standpoint, however writing comedies is hard.  This model can't necessarily guarantee a successful pilot.  A lot of the overlap happens on words that still aren't overly descriptive towards themes, but let's give this a shot.
+The Support Vector Machine model scored between 90-95% on accuracy, so we were able to achieve our modeling goal from a statistical standpoint, however writing comedies is hard. This model can't necessarily guarantee a successful pilot. A lot of the overlap happens on words that still aren't overly descriptive towards themes, but let's give this a shot.
 
-Interestingly the model seems to misfire on scouts, so I think my show would have to do with campers or talent scouts.  Song is another word the model misfires on.  The words hilarious, actress, charity, and podcast also appear.  Yes, I see it now- the lead is a hilarious struggling actress named Charity, who gets casted on a singing show by Don, the talent scout for the show, who fell in love with our leading actress at first sight, and offerred her a spot on his show without hearing her sing, so he can be around her.  Will Don's "charity offer" to cast a struggling actress, also named Charity, professionally and romanticly pay off?  If she can't sing, Don's career is over.  If Charity discovers Don's motivations, will she get disgusted and leave the show altogether?  Last thing, Don is British (UK and England are also stopwords).
+From my first test
 
-This actually does seem like a fun idea to develop.  Maybe the lead actress or a supporting character also has a podcast.  If we're truly judging our goal, this did generate an idea that my comedic ineptitude wouldn't have discovered on its own.  Now I just need to develop the characters and pitch it to Mike Schur.
+Interestingly the model seems to misfire on scouts, so I think my show would have to do with campers or talent scouts. Song is another word the model misfires on. The words hilarious, actress, charity, and podcast also appear. Yes, I see it now- the lead is a hilarious struggling actress named Charity, who gets casted on a singing show by Don, the talent scout for the show, who fell in love with our leading actress at first sight, and offered her a spot on his show without hearing her sing, so he can be around her. Will Don's "charity offer" to cast a struggling actress, also named Charity, professionally and romanticly pay off? If she can't sing, Don's career is over. If Charity discovers Don's motivations, will she get disgusted and leave the show altogether? Last thing, Don is British (UK and England are also stopwords).
+From my second test
 
+The main character is still an Englishman named Don, who has a Twitter account called "Guys Think." He is a leading voice for the trying too hard to be overly masculine (basically a British Joe Rogan). His family tells him it's time for him to settle down and find a girlfriend, and as he tries, he struggles with his own masculinity when finding out that attractive women don't take kindly to his "manliness." He interviews a sensitive guy named Scott, a seemingly plain guy with a beautiful, intelligent, and famous wife (think Melissa Mayer, who can probably also be played by Kristen Bell). While he goes onto the attack during the interview, Don finds that Scott may be the type of guy he needs to keep around instead of his "macho" friends. Scott is wary, but is too good of a guy to not help (basically Chidi from the Good Place).
+
+These do seem like fun ideas to develop. If we're truly judging our goal in a non-metric sense, this did generate an idea that my comedic ineptitude wouldn't have discovered on its own. Now I just need to develop the characters and pitch it to Mike Schur.
 
 ## Recommendations
 If I were to implement this further and look for even more ideas, I would probably run a decision tree model and possibly try a bootstrapping and bagging method (which I wasn't able to due to time constraints).  Additionally, I might look deeper into which rows misclassified and adjust my stopwords to improve accuracy.  I could even look to scrape more subreddits and attempt to classify new Subreddits in addition to The Good Place and Parks & Rec.  If I do that, I would likely have to rely more on boosting, bagging, and bootstrapping since I would be running classification on more than one target variable.
@@ -44,6 +48,7 @@ All of this would likely result in a more accurate model, but once again, I don'
 ## References
 - [Parks & Rec Subreddit](https://www.reddit.com/r/PandR/)
 - [The Good Place Subreddit](https://www.reddit.com/r/TheGoodPlace/)
+- [Data Dictionary for Original Data Categories](https://pushshift.io/api-parameters/)
 
 
 
