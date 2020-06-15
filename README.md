@@ -1,165 +1,57 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 3: Web APIs & NLP
+# Using Data Science to Write Comedy
+#### Brandon Greenspan: [LinkedIn](https://https://www.linkedin.com/in/brandonlgreenspan)
 
-### Description
+## Problem Statement
+I am a comedy writer (True Story). I've run out of my own original ideas, so in order to get a good idea to pitch to Mike Schur, I want to find common word choice/themes that fans of both The Good Place and Parks & Recreation are using. In order to accomplish this, I will need to build a classification model. While the success metric I'm aiming for in the model selection is accuracy, ultimately, my goal is to find the words that the model misclassifies in order to best identify the overlap of both shows that might indicate what elements a successful Mike Schur show would contain. Ideally, I want the accuracy rate of a selected model to be above 90%, which means that my model should be a better predictor than the baseline model, but not too accurate because I actually need enough misclassification to come up with show ideas. If the model theoretically did not misclassify any variables, then I would have an blank page, which is not an improvement upon how many comedic ideas I can conjure.
 
-In week four we've learned about a few different classifiers. In week five we'll learn about webscraping, APIs, and Natural Language Processing (NLP). This project will put those skills to the test.
+Before I get to meet Michael Schur, I have to present my process for showrunners at NBC, which is not a technical audience.
 
-For project 3, your goal is two-fold:
-1. Using [Pushshift's](https://github.com/pushshift/api) API, you'll collect posts from two subreddits of your choosing.
-2. You'll then use NLP to train a classifier on which subreddit a given post came from. This is a binary classification problem.
+## Executive Summary
+As I comedy writer, I'm only as good as my last script.  Unfortunately, I haven't written any good scripts, and I have accepted the fact that if I can't succeed with comedic talent, I can succeed with data.  Michael Schur had a lot of success with sitcoms like The Office, Parks & Rec, Brooklyn 99, The Good Place, and many more.  I have the ambitious goal to pitch a show idea to Michael Schur, while generating my show idea from data.
 
+In order to generate a show that Michael Schur would want to develop, I will scrape the Subreddits for Parks & Rec and The Good Place to get an idea of what truly resonated with fans.  Data cleaning is fairly minimal since we are only working with Booleans and Strings, so we won't need to impute any string data.  To get a better understanding of our data, we will see how long our posts are as well as the most common words used for each Subreddit.  Out of these common words, we will create a custom stoplist for modeling.
 
-#### About the API
+After calculating our baseline model, we will run a Train, Test, Split for the purposes of training and testing any future models, and evaluating the accuracy scores of each model.  The classification models we build are Logistic Regression, Multinomial Naive Bayes, Gaussian Naive Bayes, KNN, & Support Vector Machine.  Since we will be using a gridsearch method for all of these models in order to finetune our hyperparameters, this does take some time to run.
 
-Pushshift's API is fairly straightforward. For example, if I want the posts from [`/r/boardgames`](https://www.reddit.com/r/boardgames), all I have to do is use the following url: https://api.pushshift.io/reddit/search/submission?subreddit=boardgames
+Once we select a model, we will investigate our confusion matrix and assess the model's accuracy, sensitivity, specificity, precision, and true negative rates to get a sense as to the strength of the model beyond the initial accuracy score that led to its selection.  Then, we'll evaluate the strongest coefficients that the model is built on to see which words/phrases are the strongest predictors of a certain show.  Lastly, we'll dig into the words and phrases that most often lead to misclassification.
 
-To help you get started, we have a primer video on how to use the API: https://youtu.be/AcrjEWsMi_E
+After looking at our misclassified words, we'll finally try to generate a sitcom idea.  Will the idea be enough to impress Mike Schur?
 
----
-
-### Requirements
-
-- Gather and prepare your data using the `requests` library.
-- **Create and compare two models**. One of these must be a Bayes classifier, however the other can be a classifier of your choosing: logistic regression, KNN, SVM, etc.
-- A Jupyter Notebook with your analysis for a peer audience of data scientists.
-- An executive summary of your results.
-- A short presentation outlining your process and findings for a semi-technical audience.
-
-**Pro Tip:** You can find a good example executive summary [here](https://www.proposify.biz/blog/executive-summary).
-
----
-
-### Necessary Deliverables / Submission
-
-- Code and executive summary must be in a clearly commented Jupyter Notebook.
-- You must submit your slide deck.
-- Materials must be submitted by **10:00 AM on Friday, April 24th**.
-
----
-
-## Rubric
-Your local instructor will evaluate your project (for the most part) using the following criteria.  You should make sure that you consider and/or follow most if not all of the considerations/recommendations outlined below **while** working through your project.
-
-For Project 3 the evaluation categories are as follows:<br>
-**The Data Science Process**
-- Problem Statement
-- Data Collection
-- Data Cleaning & EDA
-- Preprocessing & Modeling
-- Evaluation and Conceptual Understanding
-- Conclusion and Recommendations
-
-**Organization and Professionalism**
-- Organization
-- Visualizations
-- Python Syntax and Control Flow
-- Presentation
-
-**Scores will be out of 30 points based on the 10 categories in the rubric.** <br>
-*3 points per section*<br>
-
-| Score | Interpretation |
-| --- | --- |
-| **0** | *Project fails to meet the minimum requirements for this item.* |
-| **1** | *Project meets the minimum requirements for this item, but falls significantly short of portfolio-ready expectations.* |
-| **2** | *Project exceeds the minimum requirements for this item, but falls short of portfolio-ready expectations.* |
-| **3** | *Project meets or exceeds portfolio-ready expectations; demonstrates a thorough understanding of every outlined consideration.* |
+## Project Files
+These data came from this:
+[Parks & Rec Subreddit](https://www.reddit.com/r/PandR/)
+[The Good Place Subreddit](https://www.reddit.com/r/TheGoodPlace/)
 
 
-### The Data Science Process
-
-**Problem Statement**
-- Is it clear what the goal of the project is?
-- What type of model will be developed?
-- How will success be evaluated?
-- Is the scope of the project appropriate?
-- Is it clear who cares about this or why this is important to investigate?
-- Does the student consider the audience and the primary and secondary stakeholders?
-
-**Data Collection**
-- Was enough data gathered to generate a significant result?
-- Was data collected that was useful and relevant to the project?
-- Was data collection and storage optimized through custom functions, pipelines, and/or automation?
-- Was thought given to the server receiving the requests such as considering number of requests per second?
-
-**Data Cleaning and EDA**
-- Are missing values imputed/handled appropriately?
-- Are distributions examined and described?
-- Are outliers identified and addressed?
-- Are appropriate summary statistics provided?
-- Are steps taken during data cleaning and EDA framed appropriately?
-- Does the student address whether or not they are likely to be able to answer their problem statement with the provided data given what they've discovered during EDA?
-
-**Preprocessing and Modeling**
-- Is text data successfully converted to a matrix representation?
-- Are methods such as stop words, stemming, and lemmatization explored?
-- Does the student properly split and/or sample the data for validation/training purposes?
-- Does the student test and evaluate a variety of models to identify a production algorithm (**AT MINIMUM:** Bayes and one other model)?
-- Does the student defend their choice of production model relevant to the data at hand and the problem?
-- Does the student explain how the model works and evaluate its performance successes/downfalls?
-
-**Evaluation and Conceptual Understanding**
-- Does the student accurately identify and explain the baseline score?
-- Does the student select and use metrics relevant to the problem objective?
-- Does the student interpret the results of their model for purposes of inference?
-- Is domain knowledge demonstrated when interpreting results?
-- Does the student provide appropriate interpretation with regards to descriptive and inferential statistics?
-
-**Conclusion and Recommendations**
-- Does the student provide appropriate context to connect individual steps back to the overall project?
-- Is it clear how the final recommendations were reached?
-- Are the conclusions/recommendations clearly stated?
-- Does the conclusion answer the original problem statement?
-- Does the student address how findings of this research can be applied for the benefit of stakeholders?
-- Are future steps to move the project forward identified?
+## Data Dictionary
+[Data Dictionary for Original Data Categories](https://pushshift.io/api-parameters/)
 
 
-### Organization and Professionalism
+## Conclusion
+The Support Vector Machine model scored between 90-95% on accuracy, so we were able to achieve our modeling goal from a statistical standpoint, however writing comedies is hard. This model can't necessarily guarantee a successful pilot. A lot of the overlap happens on words that still aren't overly descriptive towards themes, but let's give this a shot.
 
-**Project Organization**
-- Are modules imported correctly (using appropriate aliases)?
-- Are data imported/saved using relative paths?
-- Does the README provide a good executive summary of the project?
-- Is markdown formatting used appropriately to structure notebooks?
-- Are there an appropriate amount of comments to support the code?
-- Are files & directories organized correctly?
-- Are there unnecessary files included?
-- Do files and directories have well-structured, appropriate, consistent names?
+From my first test
 
-**Visualizations**
-- Are sufficient visualizations provided?
-- Do plots accurately demonstrate valid relationships?
-- Are plots labeled properly?
-- Are plots interpreted appropriately?
-- Are plots formatted and scaled appropriately for inclusion in a notebook-based technical report?
+Interestingly the model seems to misfire on scouts, so I think my show would have to do with campers or talent scouts. Song is another word the model misfires on. The words hilarious, actress, charity, and podcast also appear. Yes, I see it now- the lead is a hilarious struggling actress named Charity, who gets casted on a singing show by Don, the talent scout for the show, who fell in love with our leading actress at first sight, and offered her a spot on his show without hearing her sing, so he can be around her. Will Don's "charity offer" to cast a struggling actress, also named Charity, professionally and romanticly pay off? If she can't sing, Don's career is over. If Charity discovers Don's motivations, will she get disgusted and leave the show altogether? Last thing, Don is British (UK and England are also stopwords).
+From my second test
 
-**Python Syntax and Control Flow**
-- Is care taken to write human readable code?
-- Is the code syntactically correct (no runtime errors)?
-- Does the code generate desired results (logically correct)?
-- Does the code follows general best practices and style guidelines?
-- Are Pandas functions used appropriately?
-- Are `sklearn` and `NLTK` methods used appropriately?
+The main character is still an Englishman named Don, who has a Twitter account called "Guys Think." He is a leading voice for the trying too hard to be overly masculine (basically a British Joe Rogan). His family tells him it's time for him to settle down and find a girlfriend, and as he tries, he struggles with his own masculinity when finding out that attractive women don't take kindly to his "manliness." He interviews a sensitive guy named Scott, a seemingly plain guy with a beautiful, intelligent, and famous wife (think Melissa Mayer, who can probably also be played by Kristen Bell). While he goes onto the attack during the interview, Don finds that Scott may be the type of guy he needs to keep around instead of his "macho" friends. Scott is wary, but is too good of a guy to not help (basically Chidi from the Good Place).
 
-**Presentation**
-- Is the problem statement clearly presented?
-- Does a strong narrative run through the presentation building toward a final conclusion?
-- Are the conclusions/recommendations clearly stated?
-- Is the level of technicality appropriate for the intended audience?
-- Is the student substantially over or under time?
-- Does the student appropriately pace their presentation?
-- Does the student deliver their message with clarity and volume?
-- Are appropriate visualizations generated for the intended audience?
-- Are visualizations necessary and useful for supporting conclusions/explaining findings?
+These do seem like fun ideas to develop. If we're truly judging our goal in a non-metric sense, this did generate an idea that my comedic ineptitude wouldn't have discovered on its own. Now I just need to develop the characters and pitch it to Mike Schur.
+
+## Recommendations
+If I were to implement this further and look for even more ideas, I would probably run a decision tree model and possibly try a bootstrapping and bagging method (which I wasn't able to due to time constraints).  Additionally, I might look deeper into which rows misclassified and adjust my stopwords to improve accuracy.  I could even look to scrape more subreddits and attempt to classify new Subreddits in addition to The Good Place and Parks & Rec.  If I do that, I would likely have to rely more on boosting, bagging, and bootstrapping since I would be running classification on more than one target variable.
+
+All of this would likely result in a more accurate model, but once again, I don't want to be too accurate because then I wouldn't be left with many words to generate ideas.
 
 
----
+## References
+- [Parks & Rec Subreddit](https://www.reddit.com/r/PandR/)
+- [The Good Place Subreddit](https://www.reddit.com/r/TheGoodPlace/)
+- [Data Dictionary for Original Data Categories](https://pushshift.io/api-parameters/)
 
-### Why we choose this project for you?
-This project covers three of the biggest concepts we cover in the class: Classification Modeling, Natural Language Processing and Data Wrangling/Acquisition.
 
-Part 1 of the project focuses on **Data wrangling/gathering/acquisition**. This is a very important skill as not all the data you will need will be in clean CSVs or a single table in SQL.  There is a good chance that wherever you land you will have to gather some data from some unstructured/semi-structured sources; when possible, requesting information from an API, but often scraping it because they don't have an API (or it's terribly documented).
 
-Part 2 of the project focuses on **Natural Language Processing** and converting standard text data (like Titles and Comments) into a format that allows us to analyze it and use it in modeling.
+```python
 
-Part 3 of the project focuses on **Classification Modeling**.  Given that project 2 was a regression focused problem, we needed to give you a classification focused problem to practice the various models, means of assessment and preprocessing associated with classification.   
+```
